@@ -64,7 +64,7 @@ class SignalSamplingApp(QtWidgets.QWidget):
             plot_widget.getPlotItem().setLabel('bottom', color=color)
             
              # Additional styling for grid lines, markers, etc.
-            plot_widget.getPlotItem().showGrid(x=True, y=True, alpha=0.3)  # Light grid lines
+            #plot_widget.getPlotItem().showGrid(x=True, y=True, alpha=0.3)  # Light grid lines
             plot_widget.getPlotItem().getAxis('left').setPen(QtGui.QPen(QtGui.QColor(255, 255, 255), 1))
             plot_widget.getPlotItem().getAxis('bottom').setPen(QtGui.QPen(QtGui.QColor(255, 255, 255), 1))
 
