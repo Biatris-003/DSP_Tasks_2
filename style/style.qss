@@ -1,54 +1,53 @@
 /* style.qss */
 QWidget {
-    background-color: #F2F2F7;
-    color: #1c1c1c;
+    background-color: #2E2E2E; /* Dark background */
+    color: #FFFFFF; /* Light text color */
 }
+
 QComboBox, QSlider, QPushButton, QLabel {
     font-size: 14px;
 }
+
 QPushButton {
-    background-color: #1e90ff;
+    background-color: #1e90ff; /* Bright button color */
     color: white;
     border-radius: 4px;
     padding: 4px 8px;
 }
+
 QPushButton:hover {
-    background-color: #1c86ee;
+    background-color: #1c86ee; /* Darker blue on hover */
 }
-/* Add other widget styles here */
+
 QGraphicsView {
-    background-color: #FFFFFF;  
-    border: 2px solid FFFFFF;     
+    background-color: #3A3A3A;  /* Dark background for graphics view */
+    border: 2px solid #FFFFFF;   /* White border */
     border-radius: 20px;   
     margin: 10rem;     
 }
 
-
 QSlider {
-    background-color: transparent;
+    background-color: transparent; /* Transparent background */
     height: 20px;
 }
 
 QSlider::groove:horizontal {
-    background: lightgray;
+    background: #555; /* Dark gray groove */
     height: 6px;
-    
 }
 
 QSlider::sub-page:horizontal {
     background: #007AFF; /* Blue for the filled portion */
     height: 6px;
-    
 }
 
 QSlider::add-page:horizontal {
-    background: lightgray; /* Gray for the unfilled portion */
+    background: #555; /* Dark gray for the unfilled portion */
     height: 6px;
-    
 }
 
 QSlider::handle:horizontal {
-    background: white;
+    background: white; /* White handle */
     width: 20px;
     height: 20px;
     margin: -2px 0; /* Centers the handle in the groove */
@@ -56,29 +55,26 @@ QSlider::handle:horizontal {
 }
 
 QComboBox {
-    background-color: #007AFF;    
-    color: #FFFFFF;
-    border: 1px solid #d0d0d0;
+    background-color: #555; /* Dark gray background */
+    color: #FFFFFF; /* Light text color */
+    border: 1px solid #777; /* Lighter gray border */
     border-radius: 5px;
     height: 25px;
-    /* padding: 5px 8px; */
     font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 QComboBox::drop-down {
-    background-color: #007AFF;
-    color: #FFFFFF;
+    background-color: #555; /* Match background color */
+    color: #FFFFFF; /* Light text color */
     border-radius: 5px;
+}
 
-}
-/* Style the actual drop-down list */
 QComboBox QAbstractItemView {
-    background-color: #007AFF;
-    color: #FFFFFF;
-    border-radius: 5 px;
-    
+    background-color: #555; /* Dark gray for the dropdown list */
+    color: #FFFFFF; /* Light text color */
 }
+
 QComboBox::down-arrow {
     border-image: url(style/icons/Disclosure.png); /* Use your arrow icon here */
     width: 10px;
@@ -86,9 +82,9 @@ QComboBox::down-arrow {
 }
 
 QComboBox:hover {
-    border: 1px solid #a0a0a0;
+    border: 1px solid #999; /* Light gray border on hover */
 }
 
-#samplingSlider{
+#samplingSlider {
     max-width: 500px;
 }

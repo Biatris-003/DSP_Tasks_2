@@ -1,6 +1,6 @@
 import sys
 import numpy as np
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QComboBox, QFileDialog, QMessageBox
 from PyQt5.QtCore import Qt
 import pyqtgraph as pg
@@ -34,33 +34,65 @@ class SignalSamplingApp(QtWidgets.QWidget):
 
     def initUI(self):
         self.setWindowTitle("Signal Sampling and Recovery")
-        self.setGeometry(100, 100, 1200, 800)
+        self.setGeometry(100, 100, 1400, 900)
 
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
+        
+        # Set dark mode theme colors
+        palette = QtGui.QPalette()
+        palette.setColor(QtGui.QPalette.Window, QtGui.QColor(53, 53, 53))
+        palette.setColor(QtGui.QPalette.WindowText, QtGui.QColor(255, 255, 255))
+        palette.setColor(QtGui.QPalette.Base, QtGui.QColor(35, 35, 35))
+        palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(53, 53, 53))
+        palette.setColor(QtGui.QPalette.ToolTipBase, QtGui.QColor(255, 255, 255))
+        palette.setColor(QtGui.QPalette.ToolTipText, QtGui.QColor(255, 255, 255))
+        palette.setColor(QtGui.QPalette.Text, QtGui.QColor(255, 255, 255))
+        palette.setColor(QtGui.QPalette.Button, QtGui.QColor(53, 53, 53))
+        palette.setColor(QtGui.QPalette.ButtonText, QtGui.QColor(255, 255, 255))
+        palette.setColor(QtGui.QPalette.Highlight, QtGui.QColor(142, 45, 197).lighter())
+        palette.setColor(QtGui.QPalette.HighlightedText, QtGui.QColor(0, 0, 0))
+        self.setPalette(palette)
+        
+        
+        # Create and style plot widgets with dark theme
+        def style_plot_widget(plot_widget, color):
+            plot_widget.setBackground('k')  # Dark background
+            plot_widget.getPlotItem().getAxis('left').setPen('w')  # Axis color
+            plot_widget.getPlotItem().getAxis('bottom').setPen('w')
+            plot_widget.getPlotItem().setLabel('left', color=color)
+            plot_widget.getPlotItem().setLabel('bottom', color=color)
+            
+             # Additional styling for grid lines, markers, etc.
+            plot_widget.getPlotItem().showGrid(x=True, y=True, alpha=0.3)  # Light grid lines
+            plot_widget.getPlotItem().getAxis('left').setPen(QtGui.QPen(QtGui.QColor(255, 255, 255), 1))
+            plot_widget.getPlotItem().getAxis('bottom').setPen(QtGui.QPen(QtGui.QColor(255, 255, 255), 1))
 
-        # Create plots
+        # Left layout for plots
+        plot_layout = QtWidgets.QVBoxLayout()
+
+        # Create and style plots
         self.original_plot = pg.PlotWidget(title="Original Signal")
         self.reconstructed_plot = pg.PlotWidget(title="Reconstructed Signal")
-        self.error_plot = pg.PlotWidget(
-            title="Error (Original - Reconstructed)")
+        self.error_plot = pg.PlotWidget(title="Error (Original - Reconstructed)")
         self.frequency_plot = pg.PlotWidget(title="Frequency Domain")
         
-        style_plot_widget(self.original_plot)
-        style_plot_widget(self.reconstructed_plot)
-        style_plot_widget(self.error_plot)
-        style_plot_widget(self.frequency_plot)
+            # Apply styles to each plot widget with different colors
+        style_plot_widget(self.original_plot, 'cyan')
+        style_plot_widget(self.reconstructed_plot, 'yellow')
+        style_plot_widget(self.error_plot, 'red')
+        style_plot_widget(self.frequency_plot, 'magenta')
 
-        # Create grid layout for plots
-        plot_grid = QtWidgets.QGridLayout()
-        plot_grid.addWidget(self.original_plot, 0, 0)
-        plot_grid.addWidget(self.reconstructed_plot, 0, 1)
-        plot_grid.addWidget(self.error_plot, 1, 0)
-        plot_grid.addWidget(self.frequency_plot, 1, 1)
 
+        # Add plots to the vertical layout
+        plot_layout.addWidget(self.original_plot)
+        plot_layout.addWidget(self.reconstructed_plot)
+        plot_layout.addWidget(self.error_plot)
+        plot_layout.addWidget(self.frequency_plot)
+        
         # Create horizontal layout for plots and mixer
         h_layout = QtWidgets.QHBoxLayout()
-        h_layout.addLayout(plot_grid)
+        h_layout.addLayout(plot_layout, 65)
 
         h_layout.addWidget(self.mixer)
 
