@@ -58,8 +58,8 @@ class SignalSamplingApp(QtWidgets.QWidget):
         # Create and style plot widgets with dark theme
         def style_plot_widget(plot_widget, color):
             plot_widget.setBackground('k')  # Dark background
-            plot_widget.getPlotItem().getAxis('left').setPen('w')  # Axis color
-            plot_widget.getPlotItem().getAxis('bottom').setPen('w')
+            plot_widget.getPlotItem().getAxis('left').setPen(color)  # Axis color
+            plot_widget.getPlotItem().getAxis('bottom').setPen(color)
             plot_widget.getPlotItem().setLabel('left', color=color)
             plot_widget.getPlotItem().setLabel('bottom', color=color)
             
@@ -109,26 +109,33 @@ class SignalSamplingApp(QtWidgets.QWidget):
         self.sampling_slider.valueChanged.connect(self.update_sampling)
         self.sampling_slider.setObjectName("samplingSlider")
 
-        self.sampling_label = QtWidgets.QLabel(f"Sampling Frequency: {self.sampling_rate}")  
+        self.sampling_label = QtWidgets.QLabel(f"Sampling Frequency: {self.sampling_rate} Hz")  
         control_panel.addWidget(self.sampling_slider)
         control_panel.addWidget(self.sampling_label)
         layout.addLayout(control_panel)
         
-        # Add combobox for normalized frequency selection 
+       # Add combobox for normalized frequency selection in the same layout
         normalized_layout = QtWidgets.QHBoxLayout()
+        
+
         self.normalized_label = QtWidgets.QLabel("Normalized Frequency: ")
         normalized_layout.addWidget(self.normalized_label)
 
-        control_panel.addLayout(normalized_layout)
-        layout.addLayout(control_panel)
-        
-        self.freq_comboBox = QComboBox()
+        self.freq_comboBox = QtWidgets.QComboBox()
         # Add options from 0*f_max to 4*f_max
         for i in range(5):
             self.freq_comboBox.addItem(f"{i} * f_max", i)
         self.freq_comboBox.setCurrentIndex(1)  # Default to 1 * f_max
         self.freq_comboBox.currentIndexChanged.connect(self.update_sampling_from_combobox)
-        control_panel.addWidget(self.freq_comboBox)
+
+        # Add the combo box to the normalized layout right after the label
+        normalized_layout.addWidget(self.freq_comboBox)
+
+        # Set alignment for the components in the layout to justify them
+        normalized_layout.setAlignment(QtCore.Qt.AlignLeft)  # Align contents to the left
+
+        control_panel.addLayout(normalized_layout)
+        layout.addLayout(control_panel)
     
         # Add reconstruction method combobox
         reconstruction_layout = QtWidgets.QHBoxLayout()

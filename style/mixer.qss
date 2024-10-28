@@ -1,99 +1,115 @@
+/* General Background and Text */
 SignalMixer {
-    background-color: white;
-    
+    background-color: #2E2E2E; /* Dark background for dark mode */
 }
 
 QPushButton, QListWidget {
     color: #007AFF;
-    background-color: #21787880;
+    background-color: #3C3C3C; /* Semi-transparent dark background */
+    border: 1px solid #555555; /* Border for button outline */
+    border-radius: 5px;
 }
 
 QPushButton:hover {
-    background-color: #c2c2c2;
+    background-color: #4C4C4C; /* Slightly lighter for hover */
 }
 
 #removeButton {
-    
-    color: #ff0000;
+    color: #FF4C4C; /* Red color for remove button text */
 }
 
 QDoubleSpinBox {
-    background-color: #21787880 ;
-    border: 1px solid #d0d0d0;
+    background-color: #3C3C3C; /* Dark background for the spinbox */
+    color: white; /* White text for readability */
+    border: 1px solid #555555; /* Slightly lighter border */
     border-radius: 5px;
+    padding: 2px 10px; /* Padding for more spacing */
     height: 30px;
-    /* max-width: 100px; */
-    /* padding: 5px; */
     font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 QDoubleSpinBox:hover {
-    border: 1px solid #a0a0a0;
+    border: 1px solid #777777; /* Slightly lighter on hover */
 }
 
-
-QDoubleSpinBox::up-button {
-    border-image: url(style/icons/add.png) 0 0 0 0 stretch stretch;
-    width: 15px;  
-    height: 15px; 
-    border-bottom: #a0a0a0;
-}
-
-QDoubleSpinBox::down-button {
-    border-image: url(style/icons/check_indeterminate_small.png) 0 0 0 0 scale scale;
-    width: 15px;  
-    height: 15px; 
+/* Up and Down Buttons */
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
+    background-color: #555555; /* Dark gray background for buttons */
+    width: 18px;  
+    height: 18px;
+    border-radius: 3px;
 }
 
 QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {
-    background-color: #d0d0d0;
+    background-color: #777777; /* Lighter gray on hover */
 }
 
+/* Up button with custom icon */
+QDoubleSpinBox::up-button {
+    border-image: url(style/icons/add.png) 0 0 0 0 stretch stretch;
+    margin-left: -2px;
+}
+
+/* Down button with custom icon */
+QDoubleSpinBox::down-button {
+    border-image: url(style/icons/check_indeterminate_small.png) 0 0 0 0 stretch stretch;
+    margin-left: -2px;
+}
+
+/* Up and Down Button Shadows for Depth */
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+}
+
+
+/* Slider Styles */
 QSlider {
     background-color: transparent;
     height: 20px;
 }
 
 QSlider::groove:horizontal {
-    background: lightgray;
+    background: #707070; /* Darker groove color */
     height: 6px;
-    
 }
 
 QSlider::sub-page:horizontal {
     background: #007AFF; /* Blue for the filled portion */
     height: 6px;
-    
 }
 
 QSlider::add-page:horizontal {
-    background: lightgray; /* Gray for the unfilled portion */
+    background: #505050; /* Darker gray for unfilled portion */
     height: 6px;
-    
 }
 
 QSlider::handle:horizontal {
-    background: white;
-    
+    background: #FFFFFF;
     width: 20px;
     height: 20px;
-    margin: -2px 0; /* Centers the handle in the groove */
+    margin: -2px 0;
     border-radius: 5px;
 }
 
-#control_container{
-    background-color: #21787880;
+/* Control Container */
+#control_container {
+    background-color: #3C3C3C;
     border-radius: 5px;
     padding: 5px;
+    color: white;
 }
 
+/* Label Style */
 QLabel {
+    color: #FFFFFF;
     background-color: transparent;
 }
 
+/* Tree Widget */
 QTreeWidget {
-    background-color: #21787880;
-    padding: 8px;;
+    background-color: #3C3C3C;
+    padding: 8px;
     border-radius: 5px;
+    color: #FFFFFF; /* Text color for visibility */
 }
