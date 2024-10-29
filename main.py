@@ -201,7 +201,7 @@ class SignalSamplingApp(QtWidgets.QWidget):
         self.sampling_slider.setMaximum(4 * self.f_max)  # Set the slider maximum to 4 times f_max
         self.sampling_slider.setTickInterval(int(self.f_max))  # Update tick interval to f_max
         self.sampling_slider.setValue(min(self.sampling_rate, 4 * self.f_max))  # Adjust the current value to be within the new range
-        self.sampling_label.setText(f"Sampling Frequency: {self.sampling_slider.value()}")  # Update the label
+        self.sampling_label.setText(f"Sampling Frequency: {self.sampling_slider.value()} HZ")  # Update the label
 
     def update_sampling(self):
         self.sampling_rate = self.sampling_slider.value()
@@ -209,7 +209,7 @@ class SignalSamplingApp(QtWidgets.QWidget):
             self.sampling_rate = 2
 
         self.sampling_slider.setValue(self.sampling_rate)  # Reset the slider to 2
-        self.sampling_label.setText(f"Sampling Frequency: {self.sampling_rate}")  
+        self.sampling_label.setText(f"Sampling Frequency: {self.sampling_rate} Hz")  
         self.sample_and_reconstruct()
 
     def update_reconstruction_method(self, text='Whittaker-Shanon (sinc)'):
